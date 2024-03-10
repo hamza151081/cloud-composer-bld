@@ -11,7 +11,6 @@ import fnmatch
 import yfinance as yf
 from google.cloud import storage
 #COMMENT 
-#second comment
 
 PROJECT_ID="amara-sandbox-1"
 STAGING_DATASET = "stock_dataset"
