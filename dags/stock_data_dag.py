@@ -77,6 +77,7 @@ with DAG('Stock_data',
             task_id="create_bucket",
             bucket_name="{{ task_instance.xcom_pull('generate_uuid') }}",
             project_id=PROJECT_ID,
+            gcp_conn_id="google_cloud_storage_default",
             
         )
 
@@ -101,11 +102,13 @@ with DAG('Stock_data',
         {'name': 'GOOGL', 'type': 'FLOAT64', 'mode': 'NULLABLE'},
         {'name': 'MSFT', 'type': 'FLOAT64', 'mode': 'NULLABLE'},
             ],
+         gcp_conn_id="google_cloud_storage_default",
         )
     
     delete_bucket = GCSDeleteBucketOperator(
             task_id="delete_bucket",
             bucket_name="{{ task_instance.xcom_pull('generate_uuid') }}",
+            gcp_conn_id="google_cloud_storage_default",
         )
 
     (
